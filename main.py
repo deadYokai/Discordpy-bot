@@ -82,10 +82,10 @@ class YTDLSource(discord.PCMVolumeTransformer):
 
 # @client.event
 # async def on_member_join(member):
-# 	role = "Новичок"
+# 	role = "new"
 # 	ch = await client.fetch_channel(GUILD)
 # 	await member.add_roles(discord.utils.get(member.guild.roles, name=role))
-# 	await ch.send(f"{member.mention} Ты получил роль {role}. Теперь тебе доступны все функции серверa")
+# 	await ch.send(f"{member.mention} {role}.")
 
 async def pls(c, m, l, d):
 	if d:
@@ -219,12 +219,12 @@ async def getstat(uid, message):
 	exp = f'{str(d["exp"])}\/{levelformula(d["level"])}'
 	voicet = str(datetime.timedelta(seconds=d['voicetime']))
 	msgs = str(d['msg_counts'])
-	e = discord.Embed(title = "Статистика пользователя", type="rich", colour=discord.Colour.red())
+	e = discord.Embed(title = "User stats", type="rich", colour=discord.Colour.red())
 	if os.path.isfile(f'{str(uid)}.txt'):
 		with open(f'{str(uid)}.txt') as file:
 			e.description = file.read()
 	if d['level'] >= 45:
-		role = "Постоялец"
+		role = "N"
 		await authbyid.add_roles(get(authbyid.guild.roles, name=role))
 		e.set_thumbnail(url="https://icons-for-free.com/iconfiles/png/512/best+bookmark+premium+rating+select+star+icon-1320168257340660520.png")
 		level = f'<a:dance3:767020580435132416>{str(d["level"])}'
