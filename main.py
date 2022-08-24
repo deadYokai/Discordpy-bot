@@ -244,10 +244,10 @@ async def getstat(uid, message):
 	e.add_field(name="**UserID**", value=str(uid), inline=False)
 	e.add_field(name="**EXP**", value=exp, inline=True)
 	e.add_field(name="**Level**", value=level, inline=True)
-	e.add_field(name="**Ник**", value=d['display_name'], inline=False)
-	e.add_field(name="**Кол-во сообщений**", value=msgs, inline=False)
-	e.add_field(name="**Время в воисе**", value=voicet, inline=False)
-	e.add_field(name="**Время на сервере**", value=str(datetime.timedelta(seconds=getstime(authbyid).total_seconds())), inline=False)
+	e.add_field(name="**Nickname**", value=d['display_name'], inline=False)
+	e.add_field(name="**Message count**", value=msgs, inline=False)
+	e.add_field(name="**Voice time**", value=voicet, inline=False)
+	e.add_field(name="**Server time**", value=str(datetime.timedelta(seconds=getstime(authbyid).total_seconds())), inline=False)
 	await message.channel.send(embed=e)
 
 @client.event
@@ -374,17 +374,17 @@ async def on_message(message):
 		sp = getstime(message.author)
 		split = datetime.datetime.fromtimestamp(sp.total_seconds())
 		if sp.total_seconds() > 31556952:
-			years = f'{split.strftime("%y")} годиков '
+			years = f'{split.strftime("%y")} years '
 		if sp.total_seconds() > 2629746:
-			month = f'{split.strftime("%-m")} месяцев '
+			month = f'{split.strftime("%-m")} month '
 		if sp.total_seconds() > 86400:
-			days = f'{split.strftime("%-d")} денёчков '
+			days = f'{split.strftime("%-d")} days '
 		if sp.total_seconds() > 3600:
-			hours = f'{split.strftime("%-H")} часиков '
+			hours = f'{split.strftime("%-H")} hours '
 		if sp.total_seconds() > 60:
-			minutes = f'{split.strftime("%-M")} минут '
+			minutes = f'{split.strftime("%-M")} minutes '
 		secs = split.strftime("%-S")
-		await message.channel.send(f'{message.author.mention} на сервере уже {years}{month}{days}{hours}{minutes}{secs} секудночек')
+		await message.channel.send(f'{message.author.mention} on server {years}{month}{days}{hours}{minutes}{secs} sec')
 
 client.run(TOKEN)
 atexit.register(exit_handler)
